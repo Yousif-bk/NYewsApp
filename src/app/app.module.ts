@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './components/auth/auth.module';
 import { JwtInterceptors } from './shared/helper/interceptors/interceptors';
 import { SharedModule } from './shared/shared.module';
-import { metaReducerLocalStorage, storeReducer } from './shared/store/news.reducer';
+import { reducer } from './state/storyDetail.reducer';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,9 @@ import { metaReducerLocalStorage, storeReducer } from './shared/store/news.reduc
     SharedModule,
     AuthModule,
     HttpClientModule,
-    StoreModule.forRoot({ newsEntries: storeReducer }, { metaReducers: [ metaReducerLocalStorage ] }),
+    StoreModule.forRoot({
+      // storyDetail: reducer
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptors, multi: true },
