@@ -1,0 +1,60 @@
+<div class="main-container">
+
+  <div class="container py-5 py-sm-7">
+    <div class="mx-auto" style="max-width: 30rem;">
+      <!-- Card -->
+      <h5 class="text-center mb-5">News App</h5>
+      <div class="card card-lg shadow-sm p-3 mb-3">
+        <h3>{{uiState.isSignUp ? "Sign Up" : "Sign In"}}</h3>
+        <p class="text text-normal mt-3">{{!uiState.isSignUp ? "New user?" : "You have User"}} <span><a
+              (click)="showSignUpForm()" class="text text-links">
+              {{uiState.isSignUp ? "Sign In" : "Sign Up"}}
+            </a>
+          </span>
+        <div class="card-body">
+          <!-- Display Alert -->
+
+          <div *ngIf="(uiState.errorAlert && !uiState.isSignUp)" class="alert alert-danger" role="alert">
+            {{uiState.errorMessage}}
+          </div>
+          <!-- Form -->
+          <form [formGroup]="signInFormGroup">
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input type="email" formControlName="emailCtrl" class="form-control">
+              <!-- Validation Errors -->
+              <div *ngIf="f['emailCtrl'].errors">
+                <div
+                  *ngIf="(uiState.isSubmitting  && f['emailCtrl'].errors['required']) || (f['emailCtrl'].touched && f['emailCtrl'].errors['required'])">
+                  <span class="v-message">This field is required</span>
+                  <span class="v-message" *ngIf="f['emailCtrl'].errors['pattern']">
+                    Invalid Email
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" formControlName="passwordCtrl" class="form-control">
+              <!-- Validation Errors -->
+              <div *ngIf="f['passwordCtrl'].errors">
+                <div
+                  *ngIf="(uiState.isSubmitting  && f['passwordCtrl'].errors['required']) || (f['passwordCtrl'].touched && f['passwordCtrl'].errors['required'])">
+                  <span class="v-message">This field is required</span>
+                </div>
+              </div>
+            </div>
+
+            <button (click)="signIn()" type="submit" class="btn btn-primary w-100">
+              <span *ngIf="!uiState.isLoading">Submit</span>
+              <div *ngIf="uiState.isLoading" class="spinner-grow spinner-grow-sm" role="status"></div>
+            </button>
+          </form>
+          <!-- End Form -->
+        </div>
+      </div>
+      <!-- f1f5f9 -->
+      <!-- End Card -->
+    </div>
+  </div>
+</div>
