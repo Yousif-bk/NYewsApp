@@ -23,6 +23,7 @@ export class NewsListComponent implements OnInit {
 
   // APIs Call
   getTopStories() {
+    this.isLoading = true;
     this.appService.getTopStories().subscribe({
       next: (res) => {
         this.result = res.results;

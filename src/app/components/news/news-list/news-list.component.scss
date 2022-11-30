@@ -3,10 +3,18 @@
   background-color: white;
   border-radius: 6px;
   overflow: hidden;
+  border: none;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 2px 15px rgb(0 0 0 / 20%);
+}
+.categories{
+  box-shadow: 0 2px 15px rgb(0 0 0 / 10%);
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  border: none;
 }
