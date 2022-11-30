@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ContentLayoutComponent } from './components/content-layout/content-layout.component';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
+import { reducer } from '../state/storyDetail.reducer';
 
 
 
@@ -17,6 +18,7 @@ import { StoreModule } from '@ngrx/store';
   imports: [
     CommonModule,
     RouterModule,
+    StoreModule.forFeature('storyDetail',reducer)
   ]
 })
 export class SharedModule { }

@@ -1,17 +1,17 @@
 <main>
-  <section class="py-5 text-center main-container">
+  <section class="py-5  main-container" *ngFor="let item of result$ | async">
     <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">The New York Times</h1>
-        <p class="lead text-muted">The New York Times is an American daily newspaper based in New York City with a
-          worldwide readership.</p>
+      <img [src]="item.multimedia[0].url" class="text-center col-lg-8 bg-white col-md-8 mx-auto"
+        style="border-radius: 3%;" alt="">
+      <div class="col-lg-8 bg-white col-md-8 mx-auto">
+        <h2 class="mt-5">{{item.title}}</h2>
+        <p class="lead text-muted">{{item.abstract}}</p>
+        <p class="lead text-muted">{{item.des_facet[0]}}</p>
+        <span class="lead text-muted">{{item.byline}}</span>
+        <span class="lead text-muted d-flex justify-content-end">{{item.published_date | date:'mediumDate'}}</span>
         <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          <a [routerLink]="item.url" class="btn btn-primary my-2">More Detail</a>
         </p>
       </div>
     </div>
   </section>
-  <div class="album py-5">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      </div></div></div>

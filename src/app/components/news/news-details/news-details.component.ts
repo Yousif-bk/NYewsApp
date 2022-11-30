@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Result } from 'src/app/shared/models/TopsSorties';
+import { AppService } from 'src/app/shared/services/App/app.service';
 @Component({
   selector: 'app-news-details',
   templateUrl: './news-details.component.html',
@@ -9,13 +10,15 @@ import { Result } from 'src/app/shared/models/TopsSorties';
 })
 export class NewsDetailsComponent implements OnInit {
   result$: Observable<Result[]>;
-  result: Result[];
-  abstract: ""
-  constructor(private store: Store<any>) {
+  result: Result;
+  sub: Subscription;
+  constructor(private store: Store<any>, private appService: AppService) {
+    this.result$ = store.select("storyDetail");
+    console.log(store.select("storyDetail"))
   }
 
-  ngOnInit(): void {
 
-  }
+
+  ngOnInit(): void { }
 
 }

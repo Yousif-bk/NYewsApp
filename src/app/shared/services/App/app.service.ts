@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiRoutes } from '../../models/ApiRoutes';
 import { ArticleSearch } from '../../models/ArticlSearch';
-import { TopsSorties } from '../../models/TopsSorties';
+import { Result, TopsSorties } from '../../models/TopsSorties';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,9 @@ export class AppService {
   private apiUrl = environment.nyTimesApiUrl;
   private apiKey = environment.NG_TIMES_API_KEY;
 
+
   constructor(private http: HttpClient) {}
+
 
   getTopStories(): Observable<any> {
     return this.http.get<any>(

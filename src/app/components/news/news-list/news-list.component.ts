@@ -12,6 +12,7 @@ import * as StoryDetailActions from '../../../state/actions/storyDetail.action';
 export class NewsListComponent implements OnInit {
   topsSorties: TopsSorties[];
   result: Result[];
+  isLoading = true;
   constructor(private appService: AppService,
     private store: Store<AppState>
     ) {}
@@ -25,11 +26,12 @@ export class NewsListComponent implements OnInit {
     this.appService.getTopStories().subscribe({
       next: (res) => {
         this.result = res.results;
+        this.isLoading  = false
       },
     });
   }
 
   setSelectedStory(results: Result){
-    // this.store.dispatch(new StoryDetailActions.STORY_DeTAIL(results))
+     this.store.dispatch(new StoryDetailActions.StoryDetail(results))
   }
 }

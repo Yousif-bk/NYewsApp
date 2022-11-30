@@ -20,9 +20,7 @@ import { reducer } from './state/storyDetail.reducer';
     SharedModule,
     AuthModule,
     HttpClientModule,
-    StoreModule.forRoot({
-      // storyDetail: reducer
-    })
+    StoreModule.forRoot({})
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptors, multi: true },
