@@ -1,30 +1,30 @@
-
-  <div class="container">
-    <form [formGroup]="articleFormGroup">
-      <input type="text" formControlName="searchCtrl" class="form-control w-25 rounded" placeholder="Search">
-    </form>
-    <div class="col mt-3">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col"*ngFor="let item of article">
-          <div class="card" *ngIf="!isLoading">
-            <img [src]="baseImageUrl + item.multimedia[0].url" width="100%" height="225" alt="">
-            <div class="card-body">
-              <small class="text-muted">{{item.pub_date | date:'mediumDate'}}</small>
-              <p class="card-text">{{item.abstract}}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-muted">{{item.byline.original }}</small>
+<div class="container">
+  <form [formGroup]="articleFormGroup">
+    <input type="text" formControlName="searchCtrl" class="form-control w-25 rounded" placeholder="Search">
+  </form>
+  <div class="col mt-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col" *ngFor="let item of article  | slice: (pageNumber-1) * pageSize : pageNumber * pageSize">
+        <div class="card" *ngIf="!isLoading">
+          <img [src]="baseImageUrl + item.multimedia[0].url" width="100%" height="225" alt="">
+          <div class="card-body">
+            <small class="text-muted">{{item.pub_date | date:'mediumDate'}}</small>
+            <p class="card-text">{{item.abstract}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
               </div>
+              <small class="text-muted">{{item.byline.original }}</small>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
- <!-- Loader -->
- <div *ngIf="isLoading">
+</div>
+
+<!-- Loader -->
+<div *ngIf="isLoading">
   <div class="wrapper">
     <div class="spinner">
       <div class="spinner-1"></div>
@@ -32,4 +32,10 @@
       <div class="spinner-3"></div>
     </div>
   </div>
+</div>
+
+<div class="col-lg-10 col-md-2 col-sm-12 mt-5  d-flex justify-content-end">
+  <ngb-pagination [collectionSize]="totalCount" [pageSize]="pageSize" [page]="pageNumber" [boundaryLinks]="true"
+    (pageChange)="pageChanged($event, true)">
+  </ngb-pagination>
 </div>

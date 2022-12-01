@@ -26,7 +26,6 @@ export class AppService {
   }
 
   getFilteredArticle(searchKey: string){
-
     this.getArticles().pipe(
         map(x => x.filter((res: any) => {
           if(!searchKey){

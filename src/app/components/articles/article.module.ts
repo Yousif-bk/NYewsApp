@@ -4,6 +4,7 @@ import { ArticleSearchComponent } from './article-search/article-search.componen
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutes } from 'src/app/shared/models/AppRoutes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule,
     RouterModule.forChild(routes)
   ]
 })

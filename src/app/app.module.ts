@@ -9,6 +9,7 @@ import { ArticleModule } from './components/articles/article.module';
 import { AuthModule } from './components/auth/auth.module';
 import { JwtInterceptors } from './shared/helper/interceptors/interceptors';
 import { SharedModule } from './shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SharedModule } from './shared/shared.module';
     AuthModule,
     ArticleModule,
     HttpClientModule,
-    StoreModule.forRoot({})
+    StoreModule.forRoot({}),
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptors, multi: true },
