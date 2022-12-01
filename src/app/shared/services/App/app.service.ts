@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiRoutes } from '../../models/ApiRoutes';
 import { ArticleSearch } from '../../models/ArticlSearch';
@@ -21,6 +21,20 @@ export class AppService {
     return this.http.get<any>(
       this.apiUrl + ApiRoutes.nyTimes.topsSorties + this.apiKey
     );
+  }
+
+  getSelectedCategory(categoryName: string): Observable<any> {
+    return this.http.get<any>(
+      this.apiUrl + ApiRoutes.nyTimes.topsSorties + this.apiKey
+    ).pipe(
+      map(x => x.results.filter((result:any) => {
+        if(categoryName === "all"){
+          return result;
+        } else {
+          return result.section === categoryName
+        }
+      }))
+    )
   }
 
   articleSearch(): Observable<ArticleSearch[]> {

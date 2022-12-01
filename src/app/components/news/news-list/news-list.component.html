@@ -1,6 +1,5 @@
-
 <main>
-  <section class="py-5 text-center container" >
+  <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">The New York Times</h1>
@@ -9,40 +8,50 @@
         <p>
           <a href="#" class="btn btn-primary my-2">Main</a>
         </p>
-
       </div>
     </div>
   </section>
-    <div class="row">
-      <div class="col-2">
-        <ul class="list-group categories">
-          <h4 class="p-2">Categories</h4>
-          <li class="list-group-item">World</li>
-          <li class="list-group-item">Science</li>
-        </ul>
-      </div>
-      <div class="col">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="spinner-grow text-primary mb-5 mx-auto" role="status" *ngIf="isLoading">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-          <div class="col" *ngFor="let item of result; let i = index" (click)="setSelectedStory(item)"
-            [routerLink]="['/news/details']">
-            <div class="card">
-              <img [src]="item.multimedia[0].url" width="100%" height="225" alt="">
-              <div class="card-body">
-                <small class="text-muted">{{item.published_date | date:'mediumDate'}}</small>
-                <p class="card-text">{{item.title}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  </div>
-                  <small class="text-muted">{{item.byline }}</small>
+
+  <!-- News List -->
+  <div class="row">
+    <div class="col-2">
+      <ul class="list-group categories">
+        <h4 class="p-2">Categories</h4>
+        <li class="list-group-item" [class.active]="selectedCategoy == 'all'" (click)="filterCategories('all')">All</li>
+        <li class="list-group-item" [class.active]="selectedCategoy == 'world'" (click)="filterCategories('world')">World</li>
+        <li class="list-group-item" [class.active]="selectedCategoy == 'arts'" (click)="filterCategories('arts')">Arts
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" *ngFor="let item of result; let i = index" (click)="setSelectedStory(item)"
+          [routerLink]="['/news/details']">
+          <div class="card" *ngIf="!isLoading">
+            <img [src]="item.multimedia[0].url" width="100%" height="225" alt="">
+            <div class="card-body">
+              <small class="text-muted">{{item.published_date | date:'mediumDate'}}</small>
+              <p class="card-text">{{item.title}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                 </div>
+                <small class="text-muted">{{item.byline }}</small>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <!-- Loader -->
+  <div *ngIf="isLoading">
+    <div class="wrapper">
+      <div class="spinner">
+        <div class="spinner-1"></div>
+        <div class="spinner-2"></div>
+        <div class="spinner-3"></div>
+      </div>
+    </div>
+  </div>
 </main>

@@ -20,7 +20,7 @@ export interface Multimedia {
 
 export interface Result {
   id:number
-  section: number;
+  section: string;
   subsection: string;
   title: string;
   abstract: string;

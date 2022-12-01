@@ -7,3 +7,28 @@
   color: red;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                    Flex                                    */
+/* -------------------------------------------------------------------------- */
+/* #region */
+
+.flex-container {
+  display: flex;
+  .left-sided {
+    margin-left: 0;
+  }
+  .right-sided {
+    margin-right: 0;
+  }
+}
+.flex-centered {
+  margin: auto;
+}
+.loader-position {
+  margin-left: -127px !important;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}

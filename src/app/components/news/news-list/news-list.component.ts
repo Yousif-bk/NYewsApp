@@ -13,6 +13,7 @@ export class NewsListComponent implements OnInit {
   topsSorties: TopsSorties[];
   result: Result[];
   isLoading = true;
+  selectedCategoy: string
   constructor(private appService: AppService,
     private store: Store<AppState>
     ) {}
@@ -26,6 +27,7 @@ export class NewsListComponent implements OnInit {
     this.isLoading = true;
     this.appService.getTopStories().subscribe({
       next: (res) => {
+        console.log(res)
         this.result = res.results;
         this.isLoading  = false
       },
@@ -34,5 +36,19 @@ export class NewsListComponent implements OnInit {
 
   setSelectedStory(results: Result){
      this.store.dispatch(new StoryDetailActions.StoryDetail(results))
+  }
+
+  // filter Categories
+  filterCategories(categoryName:string){
+    this.selectedCategoy = categoryName
+    this.isLoading = true;
+    this.appService.getSelectedCategory(categoryName).subscribe({
+      next: (res) => {
+        this.result = res;
+        this.isLoading  = false
+      }, error: (err) =>{
+        console.log(err)
+      }
+    });
   }
 }
