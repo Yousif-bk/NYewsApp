@@ -10,12 +10,17 @@ export const AppRoutes = {
   },
 
   news: {
-    full: '/news',
-    main: 'news',
+    full: '/nyTimes',
+    main: 'nyTimes',
     sub: '',
     details: {
       full: 'details',
       main: ':id',
     },
+  },
+
+  article: {
+    main: 'article-search',
+    sub: '',
   },
 };

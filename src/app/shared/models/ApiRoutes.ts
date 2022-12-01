@@ -5,6 +5,6 @@ export const ApiRoutes = {
   },
   nyTimes: {
     topsSorties: 'topstories/v2/home.json?',
-    articleSearch: 'search/v2/articleSearch.json?q=election&',
+    articleSearch: 'search/v2/articlesearch.json?',
   },
 };

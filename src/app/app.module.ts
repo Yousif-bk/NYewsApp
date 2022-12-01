@@ -5,20 +5,21 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ArticleModule } from './components/articles/article.module';
 import { AuthModule } from './components/auth/auth.module';
 import { JwtInterceptors } from './shared/helper/interceptors/interceptors';
 import { SharedModule } from './shared/shared.module';
-import { reducer } from './state/storyDetail.reducer';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     AuthModule,
+    ArticleModule,
     HttpClientModule,
     StoreModule.forRoot({})
   ],
