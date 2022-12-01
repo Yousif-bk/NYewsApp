@@ -12,9 +12,12 @@ export class NewsDetailsComponent implements OnInit {
   result$: Observable<Result[]>;
   result: Result;
   sub: Subscription;
-  constructor(private store: Store<any>, private appService: AppService) {
+  /**
+   * get Story from Store
+   * @param store
+   */
+  constructor(private store: Store<any>) {
     this.result$ = store.select("storyDetail");
-    console.log(store.select("storyDetail"))
   }
 
 

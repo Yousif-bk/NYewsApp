@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Doc, Responses } from 'src/app/shared/models/ArticlSearch';
+import { Doc } from 'src/app/shared/models/ArticlSearch';
 import { AppService } from 'src/app/shared/services/App/app.service';
 
 @Component({
@@ -27,8 +27,10 @@ export class ArticleSearchComponent implements OnInit {
     this.getArticals();
   }
 
+  /**
+   * init Form
+   */
   initForm() {
-    // Construct article form
     this.articleFormGroup = this.formBuilder.group({
       searchCtrl: [null],
     });
@@ -40,16 +42,21 @@ export class ArticleSearchComponent implements OnInit {
     return this.articleFormGroup.controls;
   }
 
-  // Handle form changes
+  /**
+   * Handle input change
+   */
   handleChange() {
     this.f['searchCtrl'].valueChanges.subscribe((searchKey) => {
       this.isLoading = true;
       setTimeout(() => (this.isLoading = false), 1000);
       this.article = this.appService.getFilteredArticle(searchKey)
+      console.log(this.f['searchCtrl'].value)
     })
   }
 
-  // get all article
+  /**
+   * Get all article
+   */
   getArticals() {
     this.isLoading = true;
     this.appService.articleSearch().subscribe({
@@ -64,7 +71,11 @@ export class ArticleSearchComponent implements OnInit {
     });
   }
 
-  // pagination change
+  /**
+   *
+   * @param selectedPage pagination change
+   * @param isPageNumberChanged
+   */
   pageChanged(selectedPage: number, isPageNumberChanged: boolean) {
     this.isLoading = true;
     isPageNumberChanged ? this.pageNumber = selectedPage : this.pageSize = selectedPage;

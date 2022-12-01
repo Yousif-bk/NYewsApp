@@ -20,11 +20,16 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  /**
+   *
+   * @param authReq
+   * @param isSignUp
+   * @returns go to sign up if boolean is true or go to sing in
+   */
   sign(authReq: AuthReq, isSignUp: boolean): Observable<any> {
     if (isSignUp) {
       this.apiRoute = ApiRoutes.Auth.signUp;
     }
-
     return this.http.post(this.apiUrl + this.apiRoute, authReq).pipe(
       tap((res: any) => {
         // Save access token on local storage
@@ -35,6 +40,9 @@ export class AuthService {
     );
   }
 
+  /**
+   * Remove JWT Token
+   */
   async logout(): Promise<any> {
     // Clear JWT from localstorage
     await localStorage.clear();
@@ -43,6 +51,7 @@ export class AuthService {
     // Navigate user back to signIn page
     await this.router.navigate([AppRoutes.Auth.sign.full]);
   }
+
   private isTokenAvailable(): boolean {
     return !!localStorage.getItem(LocallyStoredItemsKeys.JWT);
   }

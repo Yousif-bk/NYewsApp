@@ -17,14 +17,27 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * set Article to save
+   * @param article
+   */
   setArticles(article: Doc[]){
     this.articles.next(article)
   }
 
+  /**
+   *
+   * @returns all saved articles
+   */
   getArticles(){
     return this.articles;
   }
 
+  /**
+   *
+   * @param searchKey
+   * @returns
+   */
   getFilteredArticle(searchKey: string){
     this.getArticles().pipe(
         map(x => x.filter((res: any) => {
@@ -39,12 +52,21 @@ export class AppService {
       return this.result;
   }
 
+  /**
+   *
+   * @returns Top Stories List
+   */
   getTopStories(): Observable<any> {
     return this.http.get<any>(
       this.apiUrl + ApiRoutes.nyTimes.topsSorties + this.apiKey
     );
   }
 
+  /**
+   *
+   * @param categoryName
+   * @returns specific category
+   */
   getSelectedCategory(categoryName: string): Observable<any> {
     return this.http.get<any>(
       this.apiUrl + ApiRoutes.nyTimes.topsSorties + this.apiKey
@@ -59,17 +81,12 @@ export class AppService {
     )
   }
 
-  articleSearch(article?: string): Observable<any> {
+  /**
+   *
+   * @returns all Article
+   */
+  articleSearch(): Observable<any> {
     return this.http
       .get<any>(
-        this.apiUrl + ApiRoutes.nyTimes.articleSearch + this.apiKey)
-      // ).pipe(
-      //   map(x => x.response.docs.filter((res: any) => {
-      //     if(!article){
-      //       return res
-      //     }
-      //     return res.abstract.includes(article)
-      //   }))
-      // )
-  }
+        this.apiUrl + ApiRoutes.nyTimes.articleSearch + this.apiKey)}
 }

@@ -16,37 +16,46 @@ export class NewsListComponent implements OnInit {
   selectedCategoy: string
   constructor(private appService: AppService,
     private store: Store<AppState>
-    ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getTopStories();
   }
 
-  // APIs Call
+  /**
+   * Get All stories from Api
+   */
   getTopStories() {
     this.isLoading = true;
     this.appService.getTopStories().subscribe({
       next: (res) => {
         console.log(res)
         this.result = res.results;
-        this.isLoading  = false
+        this.isLoading = false
       },
     });
   }
 
-  setSelectedStory(results: Result){
-     this.store.dispatch(new StoryDetailActions.StoryDetail(results))
+  /**
+   *
+   * @param results set Specific story to store
+   */
+  setSelectedStory(results: Result) {
+    this.store.dispatch(new StoryDetailActions.StoryDetail(results))
   }
 
-  // filter Categories
-  filterCategories(categoryName:string){
+  /**
+   * Filter categoies
+   * @param categoryName
+   */
+  filterCategories(categoryName: string) {
     this.selectedCategoy = categoryName
     this.isLoading = true;
     this.appService.getSelectedCategory(categoryName).subscribe({
       next: (res) => {
         this.result = res;
-        this.isLoading  = false
-      }, error: (err) =>{
+        this.isLoading = false
+      }, error: (err) => {
         console.log(err)
       }
     });
