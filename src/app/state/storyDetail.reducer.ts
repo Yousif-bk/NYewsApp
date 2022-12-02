@@ -5,6 +5,8 @@ export function reducer(state: Result[] = [], action: StoryDetailActions.Actions
     switch(action.type) {
         case StoryDetailActions.STORY_DeTAIL:
             return [...state, action.payload];
+            case StoryDetailActions.SEARCH_HESTORY:
+              return [...state, action.payload];
         default:
             return state;
     }

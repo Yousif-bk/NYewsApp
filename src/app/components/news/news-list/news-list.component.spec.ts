@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
+import { AppService } from 'src/app/shared/services/App/app.service';
 
 import { NewsListComponent } from './news-list.component';
 
@@ -8,9 +11,14 @@ describe('NewsListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsListComponent ]
+      declarations: [NewsListComponent],
+      imports: [
+        HttpClientTestingModule,
+        StoreModule.forRoot({})
+      ],
+      providers: [AppService]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(NewsListComponent);
     component = fixture.componentInstance;

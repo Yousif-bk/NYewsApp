@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Doc } from 'src/app/shared/models/ArticlSearch';
 import { AppService } from 'src/app/shared/services/App/app.service';
-
+import { AppState } from 'src/app/state/app.state';
+import * as StoryDetailActions from '../../../state/actions/storyDetail.action';
 @Component({
   selector: 'app-article-search',
   templateUrl: './article-search.component.html',
@@ -16,11 +19,14 @@ export class ArticleSearchComponent implements OnInit {
   totalCount: number = 10;
   pageSize: number = 6;
   pageNumber: number = 1;
+  result$: Observable<any>;
   /* Forms */
   articleFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    private appService: AppService) { }
+    private appService: AppService) {
+
+     }
 
   ngOnInit(): void {
     this.initForm();
@@ -50,7 +56,6 @@ export class ArticleSearchComponent implements OnInit {
       this.isLoading = true;
       setTimeout(() => (this.isLoading = false), 1000);
       this.article = this.appService.getFilteredArticle(searchKey)
-      console.log(this.f['searchCtrl'].value)
     })
   }
 

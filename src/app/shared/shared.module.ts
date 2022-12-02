@@ -19,6 +19,11 @@ import { reducer } from '../state/storyDetail.reducer';
     CommonModule,
     RouterModule,
     StoreModule.forFeature('storyDetail',reducer)
+  ],
+  exports:[
+    HeaderComponent,
+    FooterComponent,
+    ContentLayoutComponent
   ]
 })
 export class SharedModule { }

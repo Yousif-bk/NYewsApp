@@ -56,7 +56,7 @@ export class NewsListComponent implements OnInit {
         this.result = res;
         this.isLoading = false
       }, error: (err) => {
-        console.log(err)
+        this.isLoading = false
       }
     });
   }

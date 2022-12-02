@@ -12,7 +12,7 @@ const routes: Routes = [
     path: AppRoutes.Auth.sign.full,
     component: SignComponent,
     pathMatch: 'full',
-    // canActivate: [UnauthGuard]
+   canActivate: [UnauthGuard]
   },
   {
     path: '',
@@ -25,6 +25,10 @@ const routes: Routes = [
     children: content,
     // canActivate: [AuthGuard]
   },
+   {
+      path: "**",
+      redirectTo: AppRoutes.news.full,
+   }
 ];
 
 @NgModule({
