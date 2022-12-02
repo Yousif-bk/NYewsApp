@@ -1,7 +1,7 @@
 <header>
   <div class="navbar navbar-light bg-light shadow-sm">
     <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
+      <a  [routerLink]="'/nyTimes'" class="navbar-brand d-flex align-items-center">
         <img src="../../../../assets/ny.png" width="20" height="20" alt="">
       </a>
         <span (click)="logout()">Logout</span>
@@ -15,7 +15,7 @@
       <p class="lead text-muted">The New York Times is an American daily newspaper based in New York City with a
         worldwide readership.</p>
       <p>
-        <a href="#" class="btn btn-primary my-2">Main</a>
+        <a [routerLink]="'/article-search'" class="btn btn-primary my-2">Articles</a>
       </p>
     </div>
   </div>

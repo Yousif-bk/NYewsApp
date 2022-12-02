@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Doc } from 'src/app/shared/models/ArticlSearch';
+import { Multimedia } from 'src/app/shared/models/TopsSorties';
 import { AppService } from 'src/app/shared/services/App/app.service';
 import { AppState } from 'src/app/state/app.state';
 import * as StoryDetailActions from '../../../state/actions/storyDetail.action';
@@ -16,7 +17,7 @@ export class ArticleSearchComponent implements OnInit {
   article: Doc[]
   isLoading: boolean = false;
   baseImageUrl: string = "https://static01.nyt.com/";
-  totalCount: number = 10;
+  totalCount = 0
   pageSize: number = 6;
   pageNumber: number = 1;
   result$: Observable<any>;
@@ -66,8 +67,9 @@ export class ArticleSearchComponent implements OnInit {
     this.isLoading = true;
     this.appService.articleSearch().subscribe({
       next: (res) => {
-        this.appService.setArticles(res.response.docs)
-        this.article = res.response.docs;
+        this.appService.setArticles(res)
+        this.article = res;
+        this.totalCount = res.length
         this.isLoading = false
       },
       error: (error) => {

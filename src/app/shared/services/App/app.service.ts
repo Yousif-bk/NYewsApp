@@ -59,7 +59,7 @@ export class AppService {
   getTopStories(): Observable<any> {
     return this.http.get<any>(
       this.apiUrl + ApiRoutes.nyTimes.topsSorties + this.apiKey
-    );
+    )
   }
 
   /**
@@ -88,5 +88,15 @@ export class AppService {
   articleSearch(): Observable<any> {
     return this.http
       .get<any>(
-        this.apiUrl + ApiRoutes.nyTimes.articleSearch + this.apiKey)}
+        this.apiUrl + ApiRoutes.nyTimes.articleSearch + this.apiKey)
+        .pipe(
+          map(x => x.response.docs.filter((docs: any) =>{
+            if(docs.multimedia.length == 0){
+              return
+            }
+            return docs
+          })
+        )
+        )
+      }
 }

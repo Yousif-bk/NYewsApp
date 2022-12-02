@@ -45,7 +45,7 @@
               </div>
             </div>
 
-            <button (click)="signIn()" type="submit" class="btn btn-primary w-100">
+            <button (click)="sign()" type="submit" class="btn btn-primary w-100">
               <span *ngIf="!uiState.isLoading">Submit</span>
               <div *ngIf="uiState.isLoading" class="spinner-grow spinner-grow-sm" role="status"></div>
             </button>

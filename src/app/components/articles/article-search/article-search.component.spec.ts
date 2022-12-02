@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from 'src/app/shared/services/App/app.service';
 
 import { ArticleSearchComponent } from './article-search.component';
@@ -12,8 +13,10 @@ describe('ArticleSearchComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ArticleSearchComponent],
-      imports: [ReactiveFormsModule,
-        HttpClientTestingModule
+      imports: [
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        NgbModule
       ],
       providers: [AppService]
     })

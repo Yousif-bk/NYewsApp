@@ -24,7 +24,6 @@ export class SignComponent implements OnInit {
     errorAlert: false,
     errorMessage: '',
   };
-
   /* Forms */
   signInFormGroup: FormGroup;
 
@@ -57,7 +56,7 @@ export class SignComponent implements OnInit {
     return this.signInFormGroup.controls;
   }
 
-  signIn(): void {
+  sign(): void {
     // Set submission state to true (used for form validation)
     this.uiState.isSubmitting = true;
     // Display loader
