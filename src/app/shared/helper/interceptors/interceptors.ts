@@ -17,7 +17,8 @@ export class JwtInterceptors implements HttpInterceptor {
       if (Jwt) {
          request = request.clone({
             setHeaders: {
-               Authorization: 'Bearer ' + Jwt
+              // Comment cuz when I send in header of request give me error Not allow from api
+              // Authorization: 'Bearer ' + Jwt
             }
          });
       }

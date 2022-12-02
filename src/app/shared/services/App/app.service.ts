@@ -83,7 +83,7 @@ export class AppService {
 
   /**
    *
-   * @returns all Article
+   * @returns all Article skip if multimedia empty
    */
   articleSearch(): Observable<any> {
     return this.http

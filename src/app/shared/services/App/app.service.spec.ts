@@ -15,13 +15,4 @@ describe('AppService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('should return value from observable',
-    (done: DoneFn) => {
-    service.getTopStories().subscribe(value => {
-      console.log("TestApp")
-      expect(value).toBe('');
-      done();
-    });
-  });
 });

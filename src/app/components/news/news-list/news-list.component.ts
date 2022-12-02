@@ -13,6 +13,7 @@ export class NewsListComponent implements OnInit {
   topsSorties: TopsSorties[];
   result: Result[];
   isLoading = true;
+  isErrorOcuccer = false
   selectedCategoy: string
   constructor(private appService: AppService,
     private store: Store<AppState>
@@ -29,10 +30,13 @@ export class NewsListComponent implements OnInit {
     this.isLoading = true;
     this.appService.getTopStories().subscribe({
       next: (res) => {
-        console.log(res)
         this.result = res.results;
         this.isLoading = false
       },
+      error:(error) =>{
+        this.isLoading = false
+        this.isErrorOcuccer = true
+      }
     });
   }
 
